@@ -1,5 +1,4 @@
-//get the players selection.
-let playerSelection = (prompt("Make a choice: ")).toLowerCase();
+
 
 //this will return a random item from the arr that contains rock, paper, and scissor.
 function getComputerChoice(){
@@ -12,13 +11,17 @@ function getComputerChoice(){
 } 
 
 //get the computer selection
-let computerSelection = getComputerChoice();
-
+let computerSelection = "";
+let playerSelection = "";
 //a function that plays one round.
 function playOneRound(playerSelection, computerSelection){
+    //get the players selection.
+    playerSelection = (prompt("Make a choice: ")).toLowerCase();
+    computerSelection = getComputerChoice();
+
     console.log("Your choice: "+ playerSelection);
     console.log("Computer choice: "+ computerSelection);
-    
+
     if(computerSelection==playerSelection){
         return "PLAY AGAIN";
     } 
@@ -45,4 +48,38 @@ function playOneRound(playerSelection, computerSelection){
     }
     
 }
+//important variable declaration
+let human = 0;
+let computer = 0;
+let result = "";
+// a function that controls the main game
+//this fucntion isnot working in the right way so it need modifications
+function game(){
+    for (let x = 0; x < 5; x++){
+        result = playOneRound(playerSelection, computerSelection);
+        if (result == "PLAY AGAIN"){
+            console.log("This isnot counted, play again! ");
+            result = playOneRound(playerSelection, computerSelection);
+        }
+        else if(result == "You lose! Rock beats scissor." || result =="You lose! scissor beats paper."||result =="You lose! paper beats rock." ){
+            computer+=1;
+        }
+        else if(result=="You won! Rock beats scissor."||result == "You won! scissor beats paper"||result == "You won! paper beats rock."){
+            human+=1;
+        }
+        else {
+            console.log(result);
+            result = playOneRound(playerSelection, computerSelection);
+        }
+    }
+        
+    if (human > computer){
+        alert("YOU WON !!! WOOOHOO CONGRA!!");
+    }
+    else{
+        alert("SORRY BUDDY! YOU LOSE! MAYBE TRY AGAIN ?");
+    }
+}
+
+
 
