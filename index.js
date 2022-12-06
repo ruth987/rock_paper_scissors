@@ -52,24 +52,29 @@ function playOneRound(playerSelection, computerSelection){
 let human = 0;
 let computer = 0;
 let result = "";
+let y = 5;
 // a function that controls the main game
 //this fucntion isnot working in the right way so it need modifications
 function game(){
-    for (let x = 0; x < 5; x++){
+    for (let x = 1; x <= y; x++){
         result = playOneRound(playerSelection, computerSelection);
         if (result == "PLAY AGAIN"){
-            console.log("This isnot counted, play again! ");
-            result = playOneRound(playerSelection, computerSelection);
+            console.log("This is not counted, play again! ");
+            y+=1;
+            continue
         }
         else if(result == "You lose! Rock beats scissor." || result =="You lose! scissor beats paper."||result =="You lose! paper beats rock." ){
+            console.log(result);
             computer+=1;
         }
         else if(result=="You won! Rock beats scissor."||result == "You won! scissor beats paper"||result == "You won! paper beats rock."){
+            console.log(result);
             human+=1;
         }
         else {
             console.log(result);
-            result = playOneRound(playerSelection, computerSelection);
+            y+=1;
+            continue
         }
     }
         
